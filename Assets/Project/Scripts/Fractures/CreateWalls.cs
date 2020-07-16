@@ -17,6 +17,9 @@ namespace Project.Scripts.Fractures
         [SerializeField] private int chunks = 500;
         [SerializeField] private float density = 50;
         [SerializeField] private float internalStrength = 100;
+
+        [SerializeField]
+        private GameObject model;
             
         [SerializeField] private Material insideMaterial;
         [SerializeField] private Material outsideMaterial;
@@ -27,7 +30,9 @@ namespace Project.Scripts.Fractures
         {
              for (int j = 0; j < count; j++)
             {
-                var cubeMesh = MeshUtils.GetCubeMesh(dimensions);
+                // var cubeMesh = MeshUtils.GetCubeMesh(dimensions);
+                var viewedModelFilter = (MeshFilter)model.GetComponent("MeshFilter");
+                var cubeMesh= viewedModelFilter.mesh;
 
                 var fracture = new Fracture(
                     chunks,
